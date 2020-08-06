@@ -1,0 +1,55 @@
+<div>
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <div class="container">
+        <h1 class="display-3">Veena World</h1>
+        <p class="lead">Welcome to veena word..
+          Journey To Yourself</p>
+      </div>
+    </div>
+    <div class="col-md-6 rounded shadow py-3 mt-4" style="max-width: 500px;" *ngIf="!ForgotP">
+      <ul class="nav justify-content-center">
+        <li class="nav-item" (click)="tabSelect('s')">
+          <a class="nav-link {{tab=='s'?'active':''}}" href="#">Sign In</a>
+        </li>
+        <li class="nav-item" (click)="tabSelect('r')">
+          <a class="nav-link {{tab=='r'?'active':''}}" href="#">Register</a>
+        </li>
+      </ul>
+      <form (ngSubmit)="submit('')" #loginForm="ngForm">
+        <div class="form-group" *ngIf="tab=='r'">
+          <label>Name</label>
+          <input type="text" class="form-control" name="name" [(ngModel)]="name" required="{{tab=='r'}}">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" name="email" [(ngModel)]="email" required email>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" name="password" [(ngModel)]="password" required minlength="6">
+          <small id="emailHelp" class="form-text text-muted">Min 6 characters.</small>
+        </div>
+        <button type="submit" class="btn btn-success" [disabled]="!loginForm.valid">Submit</button>
+        <small *ngIf="tab=='s'" class="form-text text-muted" style="color: red; !important" (click)="gforgot()">Forgot Password?</small>
+      </form>
+      <p *ngIf="status!=''" class="stat">{{status}}</p>
+    </div>
+    <div class="col-md-6 rounded shadow py-3" style="max-width: 500px;" *ngIf="ForgotP">
+      <form (ngSubmit)="submit('reset')" #loginForm="ngForm">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" name="email" [(ngModel)]="email" required email>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">New Password</label>
+          <input type="password" class="form-control" name="password" [(ngModel)]="password" required minlength="6">
+          <small id="emailHelp" class="form-text text-muted">Min 6 characters.</small>
+        </div>
+        <button type="submit" class="btn btn-success" [disabled]="!loginForm.valid">Submit New Password</button>
+      </form>
+      <p *ngIf="status!=''" class="stat">{{status}}</p>
+    </div>
+  </div>
+</div>
+  
